@@ -1,8 +1,6 @@
 # 📚 Lumina Books — Book Management System
 
-A polished React book management app with full CRUD, search, filtering, and MockAPI integration. Built for the React Assignment.
-
-![Lumina Books Screenshot](./screenshot.png)
+A polished React book management app with full CRUD, search, filtering, and JSON Server integration. Built for the React Assignment.
 
 ## ✨ Features
 
@@ -21,106 +19,111 @@ A polished React book management app with full CRUD, search, filtering, and Mock
 ## 🛠 Tech Stack
 
 - React 18
-- Tailwind CSS (with Lumina design system)
+- Tailwind CSS
 - Axios
-- MockAPI.io (hosted REST mock)
+- JSON Server (mock REST API)
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lumina-books.git
-cd lumina-books
+git clone https://github.com/personalsanket0311/Books-Management.git
+cd Books-Management
 ```
 
-### 2. Set up MockAPI
-
-1. Go to [mockapi.io](https://mockapi.io) and create a free account
-2. Create a new project (name it anything)
-3. Add a resource called **`books`** with these fields:
-
-| Field      | Type   |
-|------------|--------|
-| title      | String |
-| author     | String |
-| genre      | String |
-| year       | Number |
-| coverUrl   | String |
-
-4. Copy your endpoint URL — it looks like:  
-   `https://64abc123.mockapi.io/api/v1`
-
-### 3. Configure environment
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and paste your MockAPI URL:
-
-```
-REACT_APP_API_URL=https://YOUR-PROJECT-ID.mockapi.io/api/v1
-```
-
-### 4. Install & run
+### 2. Install dependencies
 
 ```bash
 npm install
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+### 3. Configure environment
+
+Create a `.env` file in the root of the project:
+
+```
+REACT_APP_API_URL=http://localhost:3001
+```
+
+### 4. Run the app
+
+```bash
+# Start both React app and JSON Server together
+npm run dev
+```
+
+This starts:
+- ⚛️ React app → http://localhost:3000
+- 🗄️ JSON Server → http://localhost:3001
+
+### Or run separately
+
+```bash
+# Terminal 1 - JSON Server
+npm run server
+
+# Terminal 2 - React app
+npm start
+```
 
 ## 🏗 Project Structure
 
 ```
-src/
-├── components/
-│   ├── TopBar.jsx        # Header with search + Add Book button
-│   ├── Sidebar.jsx       # Left navigation
-│   ├── BookCard.jsx      # Individual book card
-│   ├── SkeletonCard.jsx  # Loading placeholder
-│   ├── BookModal.jsx     # Add / Edit form modal
-│   ├── DeleteModal.jsx   # Delete confirmation modal
-│   └── Toast.jsx         # Notification toasts
-├── hooks/
-│   ├── useBooks.js       # CRUD logic + state management
-│   └── useDebounce.js    # Search debounce
-├── pages/
-│   └── Dashboard.jsx     # Main page
-├── services/
-│   └── api.js            # Axios + bookService (API calls)
-├── App.jsx
-└── index.js
+Books-Management/
+├── db.json                  # JSON Server database (auto-saves changes)
+├── src/
+│   ├── components/
+│   │   ├── TopBar.jsx        # Header with search + Add Book button
+│   │   ├── Sidebar.jsx       # Left navigation
+│   │   ├── BookCard.jsx      # Individual book card
+│   │   ├── SkeletonCard.jsx  # Loading placeholder
+│   │   ├── BookModal.jsx     # Add / Edit form modal
+│   │   ├── DeleteModal.jsx   # Delete confirmation modal
+│   │   └── Toast.jsx         # Notification toasts
+│   ├── hooks/
+│   │   ├── useBooks.js       # CRUD logic + state management
+│   │   └── useDebounce.js    # Search debounce
+│   ├── pages/
+│   │   └── Dashboard.jsx     # Main page
+│   ├── services/
+│   │   └── api.js            # Axios + bookService (API calls)
+│   ├── App.jsx
+│   └── index.js
+└── package.json
 ```
 
 ## ☁️ Deployment
 
-### Deploy to Vercel (recommended)
+### 1. Deploy JSON Server API → Railway (free)
 
-1. Push your code to GitHub
-2. Go to [vercel.com](https://vercel.com) → Import your repo
-3. Add environment variable:  
-   `REACT_APP_API_URL` = your MockAPI URL
-4. Click Deploy ✅
+1. Push your repo to GitHub
+2. Go to [railway.app](https://railway.app) → New Project → Deploy from GitHub
+3. Set start command:
+   ```
+   npx json-server --watch db.json --port $PORT --host 0.0.0.0
+   ```
+4. Copy the deployed URL e.g. `https://books-management-api.up.railway.app`
 
-### Deploy to Netlify
+### 2. Deploy React App → Vercel (free)
 
-1. Run `npm run build`
-2. Drag the `build/` folder to [netlify.com/drop](https://app.netlify.com/drop)
-3. Add environment variable in Site Settings → Build & Deploy → Environment
+1. Go to [vercel.com](https://vercel.com) → New Project → Import your GitHub repo
+2. Add environment variable:
+   ```
+   REACT_APP_API_URL = https://books-management-api.up.railway.app
+   ```
+3. Click Deploy ✅
 
-## 📋 API Endpoints Used
+## 📋 API Endpoints
 
-| Method | Endpoint        | Description     |
-|--------|-----------------|-----------------|
-| GET    | `/books`        | Fetch all books |
-| GET    | `/books?search=`| Search books    |
-| GET    | `/books?genre=` | Filter by genre |
-| POST   | `/books`        | Create book     |
-| PUT    | `/books/:id`    | Update book     |
-| DELETE | `/books/:id`    | Delete book     |
+| Method | Endpoint        | Description          |
+|--------|-----------------|----------------------|
+| GET    | `/books`        | Fetch all books      |
+| GET    | `/books?q=`     | Full-text search     |
+| GET    | `/books?genre=` | Filter by genre      |
+| POST   | `/books`        | Create a book        |
+| PUT    | `/books/:id`    | Update a book        |
+| DELETE | `/books/:id`    | Delete a book        |
 
 ## 📝 License
 
