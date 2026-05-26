@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "id": "2",
+      "title": "A Brief History of Time",
+      "author": "Stephen Hawking",
+      "genre": "Science",
+      "year": "1988",
+      "coverUrl": ""
+    },
+    {
+      "title": "Steve Jobs",
+      "author": "Walter Isaacson",
+      "genre": "Biography",
+      "year": 2012,
+      "coverUrl": "",
+      "id": "3"
+    }
+  ]
+}
