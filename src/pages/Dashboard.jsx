@@ -106,7 +106,7 @@ export default function Dashboard({ search, onSearchChange, addTrigger }) {
           <div>
             <h1 className="text-headline-xl text-on-background mb-2">Book Library</h1>
             <p className="text-body-md text-on-surface-variant">
-              Curate and manage your collection with scholarly precision.
+             create and manage your Books collection.
             </p>
           </div>
           <div className="flex items-center gap-2">

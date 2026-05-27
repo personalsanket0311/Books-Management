@@ -2,10 +2,6 @@ import React from "react";
 
 const navItems = [
   { icon: "dashboard", label: "Dashboard", active: true },
-  { icon: "auto_stories", label: "All Books" },
-  { icon: "star", label: "Favorites" },
-  { icon: "history", label: "Recent" },
-  { icon: "library_books", label: "Collections" },
 ];
 
 export default function Sidebar() {
