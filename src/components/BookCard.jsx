@@ -1,13 +1,5 @@
 import React from "react";
 
-const GENRE_COLORS = {
-  Fiction:     "text-indigo-700",
-  Science:     "text-emerald-700",
-  History:     "text-amber-700",
-  Biography:   "text-sky-700",
-  Philosophy:  "text-violet-700",
-  Art:         "text-rose-700",
-};
 
 // Fallback gradient covers when no coverUrl is provided
 const GENRE_GRADIENTS = {

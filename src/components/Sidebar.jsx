@@ -2,6 +2,10 @@ import React from "react";
 
 const navItems = [
   { icon: "dashboard", label: "Dashboard", active: true },
+  { icon: "auto_stories", label: "All Books" },
+  { icon: "star", label: "Favorites" },
+  { icon: "history", label: "Recent" },
+  { icon: "library_books", label: "Collections" },
 ];
 
 export default function Sidebar() {
@@ -14,33 +18,36 @@ export default function Sidebar() {
 
       <nav className="flex flex-col gap-1">
         {navItems.map((item) => (
-          <a
+          <button
             key={item.label}
-            href="#"
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-label-md
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-label-md w-full text-left
               ${item.active
                 ? "bg-secondary-container text-on-secondary-container font-bold translate-x-1"
                 : "text-on-surface-variant hover:bg-surface-container-high"
               }`}
-            onClick={(e) => e.preventDefault()}
           >
             <span className="material-symbols-outlined">{item.icon}</span>
             <span>{item.label}</span>
-          </a>
+          </button>
         ))}
       </nav>
 
+      <div className="mt-8 px-2">
+        <button className="w-full border-2 border-primary border-dashed text-primary text-label-md py-3 rounded-xl hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+          <span className="material-symbols-outlined">qr_code_scanner</span>
+          Quick Scan
+        </button>
+      </div>
+
       <div className="mt-auto pt-4 border-t border-outline-variant">
         {[{ icon: "settings", label: "Settings" }, { icon: "help", label: "Support" }].map((item) => (
-          <a
+          <button
             key={item.label}
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 text-on-surface-variant text-label-md hover:bg-surface-container-high rounded-lg transition-all"
-            onClick={(e) => e.preventDefault()}
+            className="flex items-center gap-3 px-4 py-3 text-on-surface-variant text-label-md hover:bg-surface-container-high rounded-lg transition-all w-full text-left"
           >
             <span className="material-symbols-outlined">{item.icon}</span>
             <span>{item.label}</span>
-          </a>
+          </button>
         ))}
       </div>
     </aside>
